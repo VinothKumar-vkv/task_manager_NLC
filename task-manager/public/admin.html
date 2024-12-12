@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <header class="header">
+        <h1>🌟 Admin Panel</h1>
+        <p>Manage tasks for your users.</p>
+        <button id="logoutBtn">Logout</button> <!-- Logout button -->
+    </header>
+
+    <main>
+        <section class="task-section">
+            <h2>Add Tasks for Users</h2>
+            <div class="task-input">
+                <input type="text" id="adminTaskInput" placeholder="Enter a task">
+                <button id="saveTaskBtn">Save Task</button>
+            </div>
+
+            <div>
+                <label for="adminTaskDate">Assign Due Date:</label>
+                <input type="date" id="adminTaskDate">
+            </div>
+
+            <ul id="adminTaskList"></ul>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Created by [Vinoth Kumar V] | © 2024 Enhanced Task Manager</p>
+    </footer>
+
+    <script>
+        const saveTaskBtn = document.getElementById('saveTaskBtn');
+        const adminTaskInput = document.getElementById('adminTaskInput');
+        const adminTaskDate = document.getElementById('adminTaskDate');
+        const adminTaskList = document.getElementById('adminTaskList');
+        const logoutBtn = document.getElementById('logoutBtn'); // Logout button reference
+
+        // Function to render tasks
+        const renderTasks = () => {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            adminTaskList.innerHTML = ''; // Clear the list
+
+            tasks.forEach((taskObj, index) => {
+                const li = document.createElement('li');
+                li.className = taskObj.completed ? 'completed-task' : 'pending-task';
+                li.innerHTML = `
+                    ${taskObj.task} - Due: ${taskObj.date} 
+                    <button class="status-btn">${taskObj.completed ? 'Mark Pending' : 'Mark Completed'}</button>
+                    <button class="delete-btn">Delete</button>
+                `;
+
+                // Handle status toggle
+                li.querySelector('.status-btn').addEventListener('click', () => {
+                    tasks[index].completed = !tasks[index].completed;
+                    localStorage.setItem('tasks', JSON.stringify(tasks));
+                    renderTasks(); // Re-render
+                });
+
+                // Handle delete task
+                li.querySelector('.delete-btn').addEventListener('click', () => {
+                    tasks.splice(index, 1);
+                    localStorage.setItem('tasks', JSON.stringify(tasks));
+                    renderTasks(); // Re-render
+                });
+
+                adminTaskList.appendChild(li);
+            });
+        };
+
+        // Save a new task
+        saveTaskBtn.addEventListener('click', () => {
+            const task = adminTaskInput.value.trim();
+            const date = adminTaskDate.value;
+
+            if (!task) {
+                alert('Task cannot be empty!');
+                return;
+            }
+
+            // Save task to localStorage
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            tasks.push({ task, date, completed: false });
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+
+            // Update UI
+            renderTasks();
+
+            adminTaskInput.value = '';
+            adminTaskDate.value = '';
+        });
+
+        // Logout function
+        logoutBtn.addEventListener('click', () => {
+            // Clear user session or relevant data here
+            // For now, we are clearing localStorage to simulate a logout
+            // Clear stored tasks and other data
+
+            // Redirect to login page or homepage
+            window.location.href = 'login.html'; // Change to the login page or home
+        });
+
+        // Load tasks on page load
+        window.onload = renderTasks;
+    </script>
+
+</body>
+</html>

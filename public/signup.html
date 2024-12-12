@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="signup.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="signup-card">
+            <h2>Create an Account</h2>
+            <p>Sign up to get started</p>
+            <form id="signup-form">
+                <div class="input-group">
+                    <input type="text" id="name" name="name" required>
+                    <label for="name">Full Name</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="email" name="email" required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" name="password" required>
+                    <label for="password">Password</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                    <label for="confirm-password">Confirm Password</label>
+                </div>
+                <button type="submit" class="btn">Sign Up</button>
+                <p class="login-link">Already have an account? <a href="/login">Login here</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Prevent the default form submission
+        document.getElementById('signup-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Stop the form from submitting
+            
+            // Retrieve input values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // Simple validation
+            if (name && email && password && confirmPassword) {
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match. Please try again.');
+                    return;
+                }
+                // Mock sign-up logic
+                alert(`Account created for ${name} with email: ${email}`);
+                window.location.href = 'login.html'; // Redirect to login page after successful sign-up
+            } else {
+                alert('Please fill out all fields.');
+            }
+        });
+    </script>
+</body>
+</html>

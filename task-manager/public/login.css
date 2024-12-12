@@ -1,0 +1,149 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #ff9a8b, #ffb7b1); /* Soft pastel gradient */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+    text-align: center;
+}
+
+/* Login Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Login Card */
+.login-card {
+    background-color: rgba(255, 255, 255, 0.9); /* Light card background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.login-card h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.login-card p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+    color: #333;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.input-group input, 
+.input-group select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+/* Change border color on focus */
+.input-group input:focus, 
+.input-group select:focus {
+    border-color: #ff9a8b; /* Pastel pink */
+    outline: none;
+}
+
+/* Login Button */
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff9a8b; /* Light pastel pink */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #ffb7b1; /* Lighter pastel pink */
+}
+
+/* Message after login */
+.login-message {
+    margin-top: 10px;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Sign-up link */
+.signup-link {
+    margin-top: 20px;
+    color: #666;
+}
+
+.signup-link a {
+    color: #ff9a8b; /* Soft pink for the link */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    color: #666;
+    font-size: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .login-card {
+        padding: 20px;
+    }
+    
+    .login-card h1 {
+        font-size: 20px;
+    }
+
+    .input-group input, 
+    .input-group select {
+        font-size: 14px;
+    }
+
+    .login-button {
+        font-size: 14px;
+    }
+}
